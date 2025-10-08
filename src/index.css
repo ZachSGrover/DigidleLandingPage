@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Digidle Brand Colors - Deep Forest Green Theme */
+    --background: 36 24% 95%;
+    --foreground: 0 0% 16%;
+
+    --card: 36 24% 97%;
+    --card-foreground: 0 0% 16%;
+
+    --popover: 36 24% 97%;
+    --popover-foreground: 0 0% 16%;
+
+    /* Primary: Deep Forest Green (#1a3d2e ≈ hsl(155, 38%, 17%)) */
+    --primary: 155 38% 17%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Cream/Off-white */
+    --secondary: 36 24% 95%;
+    --secondary-foreground: 155 38% 17%;
+
+    --muted: 143 15% 61%;
+    --muted-foreground: 143 15% 45%;
+
+    /* Accent: Bright Success Green (#00ff88 ≈ hsl(153, 100%, 50%)) */
+    --accent: 153 100% 50%;
+    --accent-foreground: 0 0% 16%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 143 20% 85%;
+    --input: 143 20% 90%;
+    --ring: 153 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --sage: 143 15% 61%;
+    --forest-dark: 155 38% 12%;
+    
+    /* Gradient stops */
+    --gradient-forest-start: 155 38% 17%;
+    --gradient-forest-end: 155 38% 12%;
+    --gradient-accent-start: 153 100% 50%;
+    --gradient-accent-end: 153 100% 40%;
+  }
+
+  .dark {
+    --background: 155 38% 17%;
+    --foreground: 0 0% 100%;
+
+    --card: 155 38% 20%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 155 38% 20%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 155 38% 17%;
+
+    --secondary: 155 25% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 143 15% 35%;
+    --muted-foreground: 143 15% 70%;
+
+    --accent: 153 100% 50%;
+    --accent-foreground: 0 0% 16%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 155 25% 25%;
+    --input: 155 25% 25%;
+    --ring: 153 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+}
