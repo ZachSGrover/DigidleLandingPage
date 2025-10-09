@@ -70,7 +70,10 @@ export const ValueProposition = () => {
               variant="hero" 
               size="xl" 
               className="w-full sm:w-auto"
-              onClick={trackSubscribeNow}
+              onClick={() => {
+                trackSubscribeNow();
+                window.open('https://community.digidle.com/checkout/join-the-digidle-network', '_blank');
+              }}
             >
               Subscribe Now
             </Button>

@@ -43,7 +43,10 @@ export const CommunitySection = () => {
             variant="discord" 
             size="lg"
             className="min-w-[280px]"
-            onClick={trackJoinCommunity}
+            onClick={() => {
+              trackJoinCommunity();
+              window.open('https://discord.digidle.com', '_blank');
+            }}
           >
             <MessageCircle className="h-5 w-5 mr-2" />
             Join Free Community

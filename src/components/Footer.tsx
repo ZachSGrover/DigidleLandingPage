@@ -25,7 +25,10 @@ export const Footer = () => {
               variant="hero" 
               size="default"
               className="w-full sm:w-auto"
-              onClick={trackSubscribeNow}
+              onClick={() => {
+                trackSubscribeNow();
+                window.open('https://community.digidle.com/checkout/join-the-digidle-network', '_blank');
+              }}
             >
               Subscribe Now
             </Button>
@@ -44,7 +47,10 @@ export const Footer = () => {
               variant="ghost" 
               size="default"
               className="w-full sm:w-auto text-primary-foreground hover:bg-white/10"
-              onClick={trackJoinDiscord}
+              onClick={() => {
+                trackJoinDiscord();
+                window.open('https://discord.digidle.com', '_blank');
+              }}
             >
               Join Discord
             </Button>

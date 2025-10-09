@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Star } from "lucide-react";
 import digidleLogo from "@/assets/digidle-logo.png";
-import { trackSubscribeNow, trackApplyAsTalent } from "@/lib/analytics";
+import { trackSubscribeNow, trackApplyAsTalent, trackJoinCommunity } from "@/lib/analytics";
 
 export const Hero = () => {
   return (
@@ -50,7 +50,10 @@ export const Hero = () => {
               variant="hero" 
               size="xl"
               className="bg-primary/90 text-white w-full sm:w-auto min-w-[200px] sm:min-w-[240px] hover:bg-primary/60 text-sm sm:text-base"
-              onClick={trackSubscribeNow}
+              onClick={() => {
+                trackSubscribeNow();
+                window.open('https://community.digidle.com/checkout/join-the-digidle-network', '_blank');
+              }}
             >
               Subscribe Now
             </Button>
@@ -78,7 +81,13 @@ export const Hero = () => {
               <p className="text-white/80 text-xs sm:text-sm mb-3 sm:mb-4 max-w-2xl mx-auto">
                 Connect with like-minded professionals, share insights, and access exclusive opportunities before they go public.
               </p>
-              <button className="bg-accent text-primary font-semibold px-4 sm:px-6 py-2 rounded-full hover:bg-accent/90 transition-colors text-sm sm:text-base">
+              <button 
+                className="bg-accent text-primary font-semibold px-4 sm:px-6 py-2 rounded-full hover:bg-accent/90 transition-colors text-sm sm:text-base"
+                onClick={() => {
+                  trackJoinCommunity();
+                  window.open('https://discord.digidle.com', '_blank');
+                }}
+              >
                 Join Free Community
               </button>
             </div>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import digidleLogo from "@/assets/digidle-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { trackJoinCommunity } from "@/lib/analytics";
 
 const navigationItems = [
   { name: "What is Digidle", href: "#what-is-digidle" },
