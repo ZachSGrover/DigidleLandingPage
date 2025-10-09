@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Users, Sparkles } from "lucide-react";
+import { trackJoinCommunity } from "@/lib/analytics";
 
 const communityPerks = [
   {
@@ -42,6 +43,7 @@ export const CommunitySection = () => {
             variant="discord" 
             size="lg"
             className="min-w-[280px]"
+            onClick={trackJoinCommunity}
           >
             <MessageCircle className="h-5 w-5 mr-2" />
             Join Free Community

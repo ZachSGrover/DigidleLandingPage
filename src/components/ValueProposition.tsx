@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Shield, TrendingUp, Clock, Target, Sparkles, Award, Users } from "lucide-react";
+import { trackSubscribeNow, trackApplyAsTalent } from "@/lib/analytics";
 
 const businessBenefits = [
   {
@@ -65,7 +66,12 @@ export const ValueProposition = () => {
               ))}
             </div>
 
-            <Button variant="hero" size="xl" className="w-full sm:w-auto">
+            <Button 
+              variant="hero" 
+              size="xl" 
+              className="w-full sm:w-auto"
+              onClick={trackSubscribeNow}
+            >
               Subscribe Now
             </Button>
           </div>
@@ -87,7 +93,15 @@ export const ValueProposition = () => {
               ))}
             </div>
 
-            <Button variant="default" size="xl" className="w-full sm:w-auto bg-primary hover:bg-primary/90">
+            <Button 
+              variant="default" 
+              size="xl" 
+              className="w-full sm:w-auto bg-primary hover:bg-primary/90"
+              onClick={() => {
+                trackApplyAsTalent();
+                window.open('https://tally.so/r/w4RyoX', '_blank');
+              }}
+            >
               Apply as Talent
             </Button>
           </div>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import digidleLogo from "@/assets/digidle-logo.png";
+import { trackSubscribeNow, trackApplyAsTalent, trackJoinDiscord } from "@/lib/analytics";
 
 export const Footer = () => {
   return (
@@ -24,6 +25,7 @@ export const Footer = () => {
               variant="hero" 
               size="default"
               className="w-full sm:w-auto"
+              onClick={trackSubscribeNow}
             >
               Subscribe Now
             </Button>
@@ -31,6 +33,10 @@ export const Footer = () => {
               variant="outline-white" 
               size="default"
               className="w-full sm:w-auto"
+              onClick={() => {
+                trackApplyAsTalent();
+                window.open('https://tally.so/r/w4RyoX', '_blank');
+              }}
             >
               Apply as Talent
             </Button>
@@ -38,6 +44,7 @@ export const Footer = () => {
               variant="ghost" 
               size="default"
               className="w-full sm:w-auto text-primary-foreground hover:bg-white/10"
+              onClick={trackJoinDiscord}
             >
               Join Discord
             </Button>

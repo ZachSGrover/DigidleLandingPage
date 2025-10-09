@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Star } from "lucide-react";
 import digidleLogo from "@/assets/digidle-logo.png";
+import { trackSubscribeNow, trackApplyAsTalent } from "@/lib/analytics";
 
 export const Hero = () => {
   return (
@@ -49,6 +50,7 @@ export const Hero = () => {
               variant="hero" 
               size="xl"
               className="bg-primary/90 text-white w-full sm:w-auto min-w-[200px] sm:min-w-[240px] hover:bg-primary/60 text-sm sm:text-base"
+              onClick={trackSubscribeNow}
             >
               Subscribe Now
             </Button>
@@ -56,6 +58,10 @@ export const Hero = () => {
               variant="outline-white" 
               size="xl"
               className="w-full sm:w-auto min-w-[200px] sm:min-w-[240px] text-sm sm:text-base"
+              onClick={() => {
+                trackApplyAsTalent();
+                window.open('https://tally.so/r/w4RyoX', '_blank');
+              }}
             >
               Apply as Talent
             </Button>
