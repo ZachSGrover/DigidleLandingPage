@@ -1,28 +1,114 @@
 import { Play, Users, Zap, Shield } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useRef, useEffect, useState } from "react";
 
 export const WhatIsDigidle = () => {
   const [sectionRef, isSectionVisible] = useScrollAnimation(0.1);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [hasVideoStarted, setHasVideoStarted] = useState(false);
+
+  // Handle video play/pause based on scroll visibility
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isSectionVisible && !hasVideoStarted) {
+        videoRef.current.play().then(() => {
+          setIsVideoPlaying(true);
+          setHasVideoStarted(true);
+        }).catch((error) => {
+          console.log('Video autoplay failed:', error);
+        });
+      } else if (!isSectionVisible && isVideoPlaying) {
+        videoRef.current.pause();
+        setIsVideoPlaying(false);
+      }
+    }
+  }, [isSectionVisible, isVideoPlaying, hasVideoStarted]);
+
+  // Handle manual play button click
+  const handlePlayClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play().then(() => {
+        setIsVideoPlaying(true);
+        setHasVideoStarted(true);
+      }).catch((error) => {
+        console.log('Video play failed:', error);
+      });
+    }
+  };
+
+  // Handle video click to pause/play
+  const handleVideoClick = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+        setIsVideoPlaying(false);
+      } else {
+        videoRef.current.play().then(() => {
+          setIsVideoPlaying(true);
+          setHasVideoStarted(true);
+        }).catch((error) => {
+          console.log('Video play failed:', error);
+        });
+      }
+    }
+  };
 
   return (
     <section ref={sectionRef} id="what-is-digidle" className="py-24 bg-gradient-to-b from-primary/95 via-primary/85 to-primary/50">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* VSL Placeholder */}
-          <div className="relative">
+          {/* VSL Video */}
+          <div className="relative group">
             <div className="relative bg-black/20 rounded-2xl overflow-hidden shadow-2xl">
-              {/* Video placeholder with play button overlay */}
-              <div className="aspect-video bg-gradient-to-br from-primary/60 to-primary/40 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm border border-white/30">
-                    <Play className="h-8 w-8 text-white ml-1" fill="currentColor" />
-                  </div>
-                  <p className="text-white/80 text-sm font-medium">Watch Our Story</p>
-                </div>
-              </div>
+              {/* Video element */}
+              <video
+                ref={videoRef}
+                className="aspect-video w-full h-full object-cover cursor-pointer"
+                muted={false}
+                loop
+                playsInline
+                preload="metadata"
+                onClick={handleVideoClick}
+              >
+                <source src="/DigidleVSL.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               
               {/* Subtle overlay for video-like appearance */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              
+              {/* Play button overlay (shown when video is not playing) */}
+              {!isVideoPlaying && (
+                <div 
+                  className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer hover:bg-black/40 transition-colors z-10"
+                  onClick={handlePlayClick}
+                >
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors">
+                      <Play className="h-8 w-8 text-white ml-1" fill="currentColor" />
+                    </div>
+                    <p className="text-white/80 text-sm font-medium">Watch Our Story</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Pause indicator overlay (shown when video is playing) */}
+              {isVideoPlaying && (
+                <div 
+                  className="absolute inset-0 bg-transparent flex items-center justify-center cursor-pointer z-10"
+                  onClick={handleVideoClick}
+                >
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-6 bg-white rounded-sm"></div>
+                        <div className="w-2 h-6 bg-white rounded-sm"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
             {/* Decorative elements */}
@@ -102,12 +188,12 @@ export const WhatIsDigidle = () => {
             </div>
 
             {/* CTA */}
-            <div className="pt-4">
+            {/* <div className="pt-4">
               <button className="inline-flex items-center gap-2 bg-primary/90 text-white font-semibold px-8 py-4 rounded-full hover:bg-accent/25 transition-colors">
                 <Play className="h-5 w-5" />
                 Watch Full Video
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

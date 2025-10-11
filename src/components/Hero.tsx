@@ -72,7 +72,7 @@ export const Hero = () => {
         </div>
 
         {/* Free Community Banner - At bottom of hero section */}
-        <div className="absolute bottom-0 left-0 right-0 py-4 sm:py-5 bg-primary/95 backdrop-blur-sm border-t border-white/10">
+        <div className="absolute bottom-0 left-0 right-0 py-4 sm:py-5 bg-primary/90 backdrop-blur-sm border-t border-white/10">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center">
               <h3 className="text-white text-base sm:text-lg font-semibold mb-1 sm:mb-2">
