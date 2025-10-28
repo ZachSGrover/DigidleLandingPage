@@ -85,7 +85,7 @@ export const Hero = () => {
                 className="bg-accent text-primary font-semibold px-4 sm:px-6 py-2 rounded-full hover:bg-accent/90 transition-colors text-sm sm:text-base"
                 onClick={() => {
                   trackJoinCommunity();
-                  window.open('https://discord.digidle.com', '_blank');
+                  window.open('https://discord.gg/digidle', '_blank');
                 }}
               >
                 Join Free Community

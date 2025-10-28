@@ -49,7 +49,7 @@ export const Footer = () => {
               className="w-full sm:w-auto text-primary-foreground hover:bg-white/10"
               onClick={() => {
                 trackJoinDiscord();
-                window.open('https://discord.digidle.com', '_blank');
+                window.open('https://discord.gg/digidle', '_blank');
               }}
             >
               Join Discord
