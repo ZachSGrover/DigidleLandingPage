@@ -1,11 +1,9 @@
-
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import digidleLogo from "@/assets/digidle-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { trackJoinCommunity } from "@/lib/analytics";
-
 const navigationItems = [
   { name: "What is Digidle", href: "#what-is-digidle" },
   { name: "How It Works", href: "#how-it-works" },
@@ -58,9 +56,9 @@ export const Header = () => {
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection("#hero")}
+          {/* Logo — home is umbrella; hero is on this page */}
+          <Link
+            to="/"
             className="flex items-center space-x-2 sm:space-x-3 hover:opacity-50 transition-opacity"
           >
             <img
@@ -75,7 +73,7 @@ export const Header = () => {
             >
               DIGIDLE
             </span>
-          </button>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">

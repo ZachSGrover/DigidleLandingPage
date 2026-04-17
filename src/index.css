@@ -82,6 +82,42 @@ All colors MUST be HSL.
     --input: 155 25% 25%;
     --ring: 153 100% 50%;
   }
+
+  /* Umbrella gateway (/) — dark editorial; does not affect /network */
+  .theme-umbrella {
+    --background: 220 15% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 18% 11%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 12% 35%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 153 100% 45%;
+    --accent-foreground: 220 15% 8%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 12% 18%;
+    --input: 220 12% 18%;
+    --ring: 153 100% 45%;
+
+    --umbrella-surface: 220 18% 10%;
+    --brand-network: 153 100% 50%;
+    --brand-sales: 45 25% 88%;
+    --brand-athlete: 187 95% 52%;
+  }
 }
 
 @layer base {
@@ -99,6 +135,128 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* ModernIntegrations-style grid + glass (adapted to Digidle tokens) */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(0 0% 100% / 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(0 0% 100% / 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .glass-card {
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.03) 0%, hsl(0 0% 100% / 0.01) 100%);
+    border: 1px solid hsl(0 0% 100% / 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .glass-card:hover {
+    border-color: hsl(0 0% 100% / 0.15);
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.06) 0%, hsl(0 0% 100% / 0.02) 100%);
+  }
+
+  .text-gradient-primary {
+    background: linear-gradient(to right, hsl(0 0% 100%), hsl(0 0% 65%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ModernIntegrations hero: input glow (Digidle accent green) */
+  .input-glow-digidle:focus-within {
+    box-shadow: 0 0 40px -10px hsl(153 100% 45% / 0.3);
+    border-color: hsl(153 100% 45% / 0.5);
+  }
+
+  @property --digidle-cta-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .shiny-cta-digidle {
+    --digidle-cta-angle: 0deg;
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    padding: 0.875rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+    background:
+      linear-gradient(#000000, #000000) padding-box,
+      conic-gradient(from var(--digidle-cta-angle), transparent 0%, hsl(153 100% 45%) 50%, transparent 100%) border-box;
+    border: 1px solid transparent;
+    animation: border-spin-digidle 3s linear infinite;
+  }
+
+  @keyframes border-spin-digidle {
+    to {
+      --digidle-cta-angle: 360deg;
+    }
+  }
+
+  .shiny-cta-digidle:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px -10px hsl(153 100% 45% / 0.4);
+  }
+
+  /* MI slide animations (namespaced) */
+  @keyframes mi-pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    80% {
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-mi-pop-in {
+    animation: mi-pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0;
+  }
+
+  @keyframes mi-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-mi-slide-in {
+    animation: mi-slide-in 0.4s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes mi-grow-width {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  .animate-mi-grow-width {
+    animation: mi-grow-width 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  .mi-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0 0% 100% / 0.15) transparent;
+  }
+
   @keyframes scroll {
     0% {
       transform: translateX(0);

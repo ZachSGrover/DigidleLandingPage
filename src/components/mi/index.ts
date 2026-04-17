@@ -1,0 +1,1 @@
+export { DigidleMIPage } from "./DigidleMIPage";

@@ -7,7 +7,8 @@ import { SocialProof } from "@/components/SocialProof";
 import { CommunitySection } from "@/components/CommunitySection";
 import { Footer } from "@/components/Footer";
 
-const Index = () => {
+/** Digidle Network — original community / marketplace landing (formerly `/`). */
+const Network = () => {
   return (
     <div className="min-h-screen">
       <Header />
@@ -22,4 +23,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Network;
